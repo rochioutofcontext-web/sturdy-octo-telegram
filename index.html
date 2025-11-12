@@ -3,15 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Papota • Ca7riel & Paco Amoroso</title>
+    <title>PAPOTA · CA7RIEL &amp; Paco Amoroso</title>
     <style>
       :root {
-        --night: #090312;
-        --violet: #7228ff;
-        --magenta: #ff1f87;
-        --lime: #b3ff2b;
-        --aqua: #37ffdf;
-        --haze: rgba(255, 255, 255, 0.08);
+        --bg: #101010;
+        --cyan: #00e5ff;
+        --magenta: #ff2ed1;
+        --yellow: #ffe500;
+        --ink: #0d0d0d;
+        --text: #f4f4f4;
+        --muted: rgba(255, 255, 255, 0.7);
+        --card: #171717;
+        --radius-xl: 2.75rem;
+        --radius-lg: 1.75rem;
+        --transition: cubic-bezier(0.22, 1.4, 0.32, 1);
       }
 
       * {
@@ -21,128 +26,431 @@
       }
 
       body {
-        font-family: "Poppins", "Helvetica Neue", Arial, sans-serif;
-        background: radial-gradient(circle at 20% 20%, rgba(255, 31, 135, 0.15), transparent 45%),
-          radial-gradient(circle at 80% 10%, rgba(115, 40, 255, 0.25), transparent 50%),
-          linear-gradient(135deg, #05010b, #140424 55%, #2a0839 100%);
-        color: #f8f8ff;
+        font-family: "Inter", "Segoe UI", "Helvetica Neue", sans-serif;
+        background: radial-gradient(circle at 15% 20%, rgba(255, 46, 209, 0.12), transparent 55%),
+          radial-gradient(circle at 80% 10%, rgba(0, 229, 255, 0.15), transparent 60%),
+          linear-gradient(180deg, #141414, #090909 40%, #0a0a0a 100%);
+        color: var(--text);
         min-height: 100vh;
-        overflow-x: hidden;
+        letter-spacing: 0.01em;
       }
 
-      body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        background-image: linear-gradient(120deg, rgba(255, 31, 135, 0.12) 25%, transparent 25%, transparent 50%, rgba(179, 255, 43, 0.14) 50%, rgba(179, 255, 43, 0.14) 75%, transparent 75%, transparent),
-          linear-gradient(60deg, rgba(55, 255, 223, 0.1) 20%, transparent 20%, transparent 40%, rgba(114, 40, 255, 0.12) 40%, rgba(114, 40, 255, 0.12) 60%, transparent 60%, transparent 80%, rgba(255, 31, 135, 0.12) 80%, rgba(255, 31, 135, 0.12));
-        background-size: 180px 180px, 220px 220px;
-        mix-blend-mode: screen;
-        opacity: 0.7;
-        pointer-events: none;
-        z-index: -1;
-        animation: drift 18s linear infinite;
+      a {
+        color: inherit;
+        text-decoration: none;
       }
 
-      @keyframes drift {
-        0% {
-          transform: translate3d(0, 0, 0) scale(1);
-        }
-        50% {
-          transform: translate3d(-12px, 10px, 0) scale(1.02);
-        }
-        100% {
-          transform: translate3d(8px, -10px, 0) scale(1);
-        }
-      }
-
-      header {
-        position: relative;
-        padding: clamp(4rem, 8vw, 7rem) 1.5rem 4rem;
-        text-align: center;
-        max-width: 960px;
+      .wrap {
+        width: min(1100px, 92%);
         margin: 0 auto;
       }
 
-      header::before {
-        content: "papota";
-        position: absolute;
-        top: 15%;
-        left: 50%;
-        transform: translateX(-50%) rotate(-6deg);
-        font-size: clamp(5rem, 20vw, 13rem);
-        color: rgba(255, 255, 255, 0.03);
-        letter-spacing: 0.4rem;
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        backdrop-filter: blur(18px);
+        background: rgba(16, 16, 16, 0.85);
+        border-bottom: 1px solid rgba(255, 46, 209, 0.16);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 0;
+      }
+
+      .logo {
+        font-family: "Archivo Black", "Arial Black", Impact, sans-serif;
+        font-size: 1.4rem;
+        letter-spacing: 0.2em;
+        color: var(--yellow);
         text-transform: uppercase;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 0.9rem;
+        flex-wrap: wrap;
+      }
+
+      .nav-links a {
+        padding: 0.55rem 1.1rem;
+        border-radius: 999px;
+        background: rgba(0, 229, 255, 0.12);
+        color: var(--muted);
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        transition: transform 0.35s var(--transition), box-shadow 0.35s ease, background 0.35s ease;
+      }
+
+      .nav-links a:hover,
+      .nav-links a:focus-visible {
+        outline: none;
+        transform: translateY(-1px) scale(1.05);
+        background: rgba(255, 46, 209, 0.22);
+        box-shadow: 0 18px 30px rgba(255, 46, 209, 0.28);
+      }
+
+      main {
+        padding: clamp(5rem, 12vw, 7rem) 0 6rem;
+        display: grid;
+        gap: clamp(3rem, 7vw, 4.5rem);
+      }
+
+      .hero {
+        display: grid;
+        gap: 2.5rem;
+      }
+
+      .hero-grid {
+        display: grid;
+        gap: 2rem;
+      }
+
+      @media (min-width: 800px) {
+        .hero-grid {
+          grid-template-columns: minmax(260px, 320px) 1fr;
+          align-items: center;
+        }
+      }
+
+      .cover {
+        position: relative;
+        border-radius: var(--radius-xl);
+        padding: 2.5rem;
+        background: linear-gradient(135deg, rgba(255, 46, 209, 0.6), rgba(0, 229, 255, 0.8));
+        box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.16), 0 25px 50px rgba(0, 229, 255, 0.25);
+      }
+
+      .cover::after {
+        content: "";
+        position: absolute;
+        inset: 0.8rem;
+        border-radius: var(--radius-xl);
+        background: radial-gradient(circle at 30% 30%, rgba(255, 229, 0, 0.5), transparent 60%),
+          radial-gradient(circle at 70% 75%, rgba(16, 16, 16, 0.35), transparent 70%);
+        border: 3px solid rgba(16, 16, 16, 0.55);
+        box-shadow: inset 0 14px 25px rgba(255, 255, 255, 0.22);
         pointer-events: none;
       }
 
-      .hero-badge {
+      .cover svg {
+        width: 100%;
+        display: block;
+        border-radius: calc(var(--radius-xl) - 1.6rem);
+      }
+
+      .hero-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .hero-eyebrow {
         display: inline-flex;
-        gap: 0.75rem;
         align-items: center;
-        padding: 0.65rem 1.4rem;
-        background: rgba(10, 1, 20, 0.6);
-        border: 1px solid rgba(179, 255, 43, 0.35);
+        gap: 0.6rem;
+        padding: 0.6rem 1.1rem;
         border-radius: 999px;
-        box-shadow: 0 0 0 1px rgba(255, 31, 135, 0.25), 0 12px 35px rgba(255, 31, 135, 0.25);
-        font-size: 0.95rem;
+        background: rgba(0, 229, 255, 0.12);
+        color: var(--muted);
+        letter-spacing: 0.22em;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        font-family: "Archivo Black", "Arial Black", Impact, sans-serif;
+        font-size: clamp(3.5rem, 8vw, 5rem);
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--magenta);
+        text-shadow: 0 12px 30px rgba(255, 46, 209, 0.5), 0 0 60px rgba(0, 229, 255, 0.3);
+      }
+
+      .hero p {
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: var(--muted);
+        max-width: 620px;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+        padding: 0.85rem 1.8rem;
+        border-radius: 999px;
+        border: none;
+        font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.16em;
-        color: var(--lime);
-        margin-bottom: 2rem;
+        background: linear-gradient(135deg, var(--cyan), var(--magenta));
+        color: var(--ink);
+        box-shadow: 0 18px 35px rgba(0, 229, 255, 0.28), inset 0 3px 6px rgba(255, 255, 255, 0.6);
+        cursor: pointer;
+        transition: transform 0.4s var(--transition), box-shadow 0.4s ease;
       }
 
-      header h1 {
-        font-size: clamp(3rem, 8vw, 5.6rem);
-        font-weight: 700;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        margin-bottom: 1.25rem;
-        text-shadow: 0 0 22px rgba(179, 255, 43, 0.55), 0 0 50px rgba(255, 31, 135, 0.45);
+      .btn:hover,
+      .btn:focus-visible {
+        outline: none;
+        transform: translateY(-3px) scale(1.04);
+        box-shadow: 0 25px 40px rgba(255, 46, 209, 0.35);
       }
 
-      header p {
-        max-width: 720px;
-        margin: 0 auto 2.5rem;
-        font-size: 1.1rem;
-        line-height: 1.8;
-        background: rgba(9, 3, 18, 0.65);
-        border: 1px solid rgba(55, 255, 223, 0.2);
-        padding: 1.6rem 2rem;
-        border-radius: 28px;
-        backdrop-filter: blur(6px);
-        box-shadow: 0 18px 60px rgba(114, 40, 255, 0.25);
+      .btn.secondary {
+        background: linear-gradient(135deg, rgba(255, 229, 0, 0.9), rgba(255, 46, 209, 0.6));
       }
 
-      .ticker {
-        width: 100%;
-        overflow: hidden;
-        border-top: 1px solid rgba(248, 248, 255, 0.1);
-        border-bottom: 1px solid rgba(248, 248, 255, 0.1);
-        margin-bottom: 4rem;
+      section {
+        padding: clamp(2.4rem, 4vw, 3.2rem);
+        background: var(--card);
+        border-radius: var(--radius-lg);
+        border: 1px solid rgba(255, 229, 0, 0.08);
+        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.6);
         position: relative;
-        background: rgba(255, 31, 135, 0.06);
+        overflow: hidden;
       }
 
-      .ticker::after {
+      section::after {
         content: "";
         position: absolute;
         inset: 0;
-        background: linear-gradient(90deg, rgba(5, 1, 11, 0.9) 0%, transparent 20%, transparent 80%, rgba(5, 1, 11, 0.9) 100%);
+        background: linear-gradient(120deg, rgba(255, 46, 209, 0.12), transparent 55%, rgba(0, 229, 255, 0.18));
         pointer-events: none;
+        mix-blend-mode: screen;
+        opacity: 0.7;
       }
 
-      .ticker-track {
+      section > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      h2 {
+        font-family: "Archivo Black", "Arial Black", Impact, sans-serif;
+        font-size: 1.9rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+        color: var(--cyan);
+      }
+
+      p {
+        line-height: 1.7;
+      }
+
+      .about p {
+        font-size: 1.05rem;
+        color: var(--muted);
+      }
+
+      .tracklist {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .track-card {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 1.1rem;
+        padding: 1.2rem 1.4rem;
+        border-radius: 2rem;
+        background: linear-gradient(135deg, rgba(0, 229, 255, 0.16), rgba(255, 46, 209, 0.1));
+        border: 1px solid rgba(0, 229, 255, 0.24);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+        transition: transform 0.35s var(--transition), box-shadow 0.35s ease;
+      }
+
+      .track-card:hover,
+      .track-card:focus-within {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 40px rgba(0, 229, 255, 0.25);
+      }
+
+      .track-number {
+        font-family: "Archivo Black", "Arial Black", Impact, sans-serif;
+        font-size: 1.4rem;
+        color: var(--yellow);
+      }
+
+      .track-info {
+        display: grid;
+        gap: 0.4rem;
+      }
+
+      .track-title {
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .track-desc {
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+
+      .chips {
+        display: flex;
+        gap: 0.4rem;
+        flex-wrap: wrap;
+      }
+
+      .chip {
+        padding: 0.25rem 0.6rem;
+        border-radius: 999px;
+        background: rgba(255, 229, 0, 0.18);
+        color: var(--text);
+        font-size: 0.7rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .duration {
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+
+      .play-btn {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: none;
+        background: linear-gradient(135deg, var(--yellow), var(--magenta));
+        color: var(--ink);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: transform 0.35s var(--transition), box-shadow 0.35s ease;
+        box-shadow: 0 12px 25px rgba(255, 229, 0, 0.3);
+      }
+
+      .play-btn span {
+        font-size: 1.1rem;
+        font-weight: 700;
+      }
+
+      .play-btn:hover,
+      .play-btn:focus-visible {
+        outline: none;
+        transform: scale(1.08);
+        box-shadow: 0 16px 35px rgba(255, 46, 209, 0.35);
+      }
+
+      .gallery {
+        display: grid;
+        gap: 1.2rem;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+
+      .art-card {
+        position: relative;
+        aspect-ratio: 1 / 1;
+        border-radius: var(--radius-lg);
+        background: linear-gradient(135deg, rgba(0, 229, 255, 0.12), rgba(255, 229, 0, 0.2));
+        border: 2px solid rgba(255, 46, 209, 0.25);
+        box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.08), 0 18px 28px rgba(0, 0, 0, 0.45);
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        transition: transform 0.4s var(--transition), box-shadow 0.4s ease;
+      }
+
+      .art-card::after {
+        content: "";
+        position: absolute;
+        inset: 12%;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.12);
+        filter: blur(0.5px);
+      }
+
+      .art-card span {
+        position: relative;
+        z-index: 1;
+        font-family: "Archivo Black", "Arial Black", Impact, sans-serif;
+        font-size: 1rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--ink);
+      }
+
+      .art-card:hover,
+      .art-card:focus-visible {
+        outline: none;
+        transform: translateY(-4px) scale(1.03);
+        box-shadow: 0 20px 35px rgba(0, 229, 255, 0.3);
+      }
+
+      .short-film {
+        display: grid;
+        gap: 1.6rem;
+      }
+
+      .video-frame {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        background: linear-gradient(135deg, rgba(255, 46, 209, 0.24), rgba(0, 229, 255, 0.12));
+        border: 2px solid rgba(0, 229, 255, 0.28);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+      }
+
+      .video-frame iframe,
+      .video-frame div {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .video-placeholder {
+        display: grid;
+        place-items: center;
+        color: var(--muted);
+        font-size: 1rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        background: repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.2) 0 8px, rgba(255, 255, 255, 0.08) 8px 16px);
+      }
+
+      .testimonials {
+        position: relative;
+        overflow: hidden;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 229, 0, 0.22);
+        background: rgba(0, 229, 255, 0.08);
+      }
+
+      .testimonial-track {
         display: flex;
         gap: 2.5rem;
+        padding: 1rem 0;
         width: max-content;
-        padding: 0.85rem 0;
-        animation: ticker 16s linear infinite;
-        font-size: 0.9rem;
+        animation: ticker 22s linear infinite;
+        font-size: 0.85rem;
+        letter-spacing: 0.22em;
         text-transform: uppercase;
-        letter-spacing: 0.24em;
-        color: rgba(248, 248, 255, 0.72);
+      }
+
+      .testimonial {
+        color: var(--muted);
+        white-space: nowrap;
       }
 
       @keyframes ticker {
@@ -154,365 +462,413 @@
         }
       }
 
-      main {
-        width: min(1100px, 92%);
-        margin: 0 auto 6rem;
-        display: grid;
-        gap: 3rem;
-      }
-
-      section {
-        position: relative;
-        padding: clamp(2rem, 4vw, 3.25rem);
-        border-radius: 30px;
-        background: rgba(12, 5, 25, 0.65);
-        border: 1px solid rgba(248, 248, 255, 0.08);
-        overflow: hidden;
-        box-shadow: 0 25px 60px rgba(5, 1, 15, 0.5);
-      }
-
-      section::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(135deg, rgba(179, 255, 43, 0.08), transparent 55%, rgba(255, 31, 135, 0.18));
-        opacity: 0.85;
-        mix-blend-mode: screen;
-        pointer-events: none;
-      }
-
-      h2 {
-        font-size: 1.9rem;
-        margin-bottom: 1.5rem;
-        text-transform: uppercase;
-        letter-spacing: 0.28em;
-        color: var(--aqua);
-      }
-
-      p {
-        line-height: 1.7;
-      }
-
-      .grid {
-        display: grid;
-        gap: 1.5rem;
-      }
-
-      .grid-three {
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      }
-
-      .capsule {
-        background: rgba(9, 3, 18, 0.75);
-        border-radius: 22px;
-        padding: 1.4rem 1.6rem;
-        border: 1px solid rgba(255, 31, 135, 0.15);
-        position: relative;
-        overflow: hidden;
-      }
-
-      .capsule::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(160deg, transparent, rgba(255, 31, 135, 0.12));
-        mix-blend-mode: screen;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-
-      .capsule:hover::after {
-        opacity: 1;
-      }
-
-      .capsule h3 {
-        font-size: 1rem;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        margin-bottom: 0.75rem;
-        color: var(--lime);
-      }
-
-      .capsule p,
-      .capsule ul {
-        font-size: 0.98rem;
-        color: rgba(248, 248, 255, 0.85);
-      }
-
-      .capsule ul {
-        list-style: none;
-        display: grid;
-        gap: 0.55rem;
-      }
-
-      .lyric-card {
-        border-left: 3px solid rgba(255, 31, 135, 0.55);
-        padding-left: 1rem;
-        font-style: italic;
-        font-size: 1.05rem;
-        letter-spacing: 0.04em;
-        color: rgba(248, 248, 255, 0.88);
-      }
-
-      .pulse-map {
-        display: grid;
-        gap: 1.2rem;
-      }
-
-      .pulse-row {
-        display: grid;
-        grid-template-columns: 120px 1fr;
-        gap: 1.5rem;
-        align-items: center;
-      }
-
-      .pulse-label {
-        font-size: 0.85rem;
-        letter-spacing: 0.3em;
-        text-transform: uppercase;
-        color: rgba(248, 248, 255, 0.6);
-      }
-
-      .pulse-bar {
-        height: 10px;
-        border-radius: 99px;
-        background: rgba(255, 255, 255, 0.1);
-        overflow: hidden;
-        position: relative;
-      }
-
-      .pulse-bar span {
-        position: absolute;
-        inset: 0;
-        border-radius: inherit;
-        background: linear-gradient(90deg, rgba(114, 40, 255, 0.7), rgba(255, 31, 135, 0.9));
-        transform-origin: left;
-      }
-
       .timeline {
         display: grid;
-        gap: 1.2rem;
-        position: relative;
-        padding-left: 1.5rem;
+        gap: 1.4rem;
       }
 
-      .timeline::before {
-        content: "";
-        position: absolute;
-        left: 0.3rem;
-        top: 0.25rem;
-        bottom: 0.25rem;
-        width: 2px;
-        background: linear-gradient(180deg, rgba(114, 40, 255, 0.2), rgba(255, 31, 135, 0.5));
+      .milestone {
+        display: grid;
+        gap: 0.5rem;
+        padding: 1.2rem 1.4rem;
+        border-radius: var(--radius-lg);
+        background: rgba(0, 229, 255, 0.08);
+        border: 1px solid rgba(255, 46, 209, 0.18);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
       }
 
-      .timeline-step {
-        position: relative;
-        padding-left: 1.5rem;
-      }
-
-      .timeline-step::before {
-        content: "";
-        position: absolute;
-        left: -1.1rem;
-        top: 0.3rem;
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background: var(--magenta);
-        box-shadow: 0 0 0 4px rgba(255, 31, 135, 0.15);
-      }
-
-      .timeline-step h3 {
-        font-size: 0.95rem;
-        text-transform: uppercase;
-        letter-spacing: 0.22em;
-        color: var(--aqua);
-        margin-bottom: 0.4rem;
+      .milestone strong {
+        font-family: "Archivo Black", "Arial Black", Impact, sans-serif;
+        font-size: 1.1rem;
+        letter-spacing: 0.1em;
+        color: var(--yellow);
       }
 
       footer {
-        padding: 3rem 1.5rem 4rem;
-        text-align: center;
-        font-size: 0.85rem;
-        color: rgba(248, 248, 255, 0.55);
+        margin: 4rem 0 2.5rem;
+        padding: 2rem 0;
+        border-top: 1px solid rgba(255, 229, 0, 0.2);
       }
 
-      footer a {
-        color: var(--lime);
-        text-decoration: none;
-        border-bottom: 1px solid rgba(179, 255, 43, 0.3);
-        padding-bottom: 0.1rem;
+      .footer-grid {
+        display: grid;
+        gap: 1.5rem;
       }
 
-      @media (max-width: 640px) {
-        header {
-          padding-top: 4.5rem;
+      @media (min-width: 640px) {
+        .footer-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          align-items: start;
         }
+      }
 
-        header::before {
-          top: 10%;
-          font-size: clamp(4rem, 26vw, 8rem);
-        }
+      .footer-links {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
 
-        .pulse-row {
-          grid-template-columns: 1fr;
-          gap: 0.75rem;
-        }
+      .footer-links a {
+        padding: 0.6rem 1.2rem;
+        border-radius: 999px;
+        border: 1px solid rgba(0, 229, 255, 0.3);
+        color: var(--cyan);
+        transition: transform 0.3s var(--transition), box-shadow 0.3s ease;
+      }
 
-        .pulse-label {
-          letter-spacing: 0.2em;
-        }
+      .footer-links a:hover,
+      .footer-links a:focus-visible {
+        outline: none;
+        transform: translateY(-2px);
+        box-shadow: 0 12px 22px rgba(0, 229, 255, 0.25);
+      }
+
+      .credits {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
       }
     </style>
   </head>
   <body>
     <header>
-      <div class="hero-badge">Ca7riel × Paco Amoroso</div>
-      <h1>Papota</h1>
-      <p>
-        Un mapa visual del universo urbano y electrónico de "Papota": bajos que vibran el pavimento,
-        barras filosas y un pulso fiestero que prende las luces estroboscópicas de Buenos Aires.
-        Esta página es una oda a la química entre Ca7riel y Paco Amoroso, con texturas digitales y
-        derroche de estilo post reggaetón.
-      </p>
-      <div class="ticker" aria-hidden="true">
-        <div class="ticker-track">
-          <span>papota</span>
-          <span>ca7riel y paco amoroso</span>
-          <span>buenos aires glitch club</span>
-          <span>flow nocturno</span>
-          <span>papota</span>
-          <span>ca7riel y paco amoroso</span>
-          <span>buenos aires glitch club</span>
-          <span>flow nocturno</span>
-        </div>
+      <div class="wrap nav" role="navigation" aria-label="Principal">
+        <div class="logo">PAPOTA</div>
+        <nav class="nav-links" aria-label="Secciones">
+          <a href="#sobre">Sobre</a>
+          <a href="#tracks">Tracks</a>
+          <a href="#galeria">Galería</a>
+          <a href="#film">Short Film</a>
+          <a href="#fechas">Fechas</a>
+        </nav>
       </div>
     </header>
 
-    <main>
-      <section aria-labelledby="pulso">
-        <h2 id="pulso">Pulseo Sonoro</h2>
-        <div class="pulse-map">
-          <div class="pulse-row">
-            <div class="pulse-label">Bajos</div>
-            <div class="pulse-bar"><span style="width: 94%"></span></div>
-          </div>
-          <div class="pulse-row">
-            <div class="pulse-label">Synths</div>
-            <div class="pulse-bar"><span style="width: 82%"></span></div>
-          </div>
-          <div class="pulse-row">
-            <div class="pulse-label">Swing</div>
-            <div class="pulse-bar"><span style="width: 76%"></span></div>
-          </div>
-          <div class="pulse-row">
-            <div class="pulse-label">Actitud</div>
-            <div class="pulse-bar"><span style="width: 100%"></span></div>
-          </div>
-        </div>
-      </section>
+    <main class="wrap">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-grid">
+          <figure class="cover" aria-labelledby="cover-title cover-desc">
+            <svg viewBox="0 0 400 400" role="img" aria-labelledby="cover-title cover-desc">
+              <title id="cover-title">Arte tributo caricaturesco de Papota</title>
+              <desc id="cover-desc">
+                Figura muscular inflada sosteniendo un micrófono neón con destellos cian y magenta sobre fondo oscuro.
+              </desc>
+              <defs>
+                <linearGradient id="skin" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ff2ed1" />
+                  <stop offset="100%" stop-color="#ffe500" />
+                </linearGradient>
+                <linearGradient id="outline" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#00e5ff" />
+                  <stop offset="100%" stop-color="#ff2ed1" />
+                </linearGradient>
+              </defs>
+              <rect width="400" height="400" rx="80" fill="#101010" />
+              <circle cx="200" cy="200" r="150" fill="url(#skin)" opacity="0.45" />
+              <path
+                d="M120 260 Q200 320 280 260 Q260 200 200 220 Q140 200 120 260"
+                fill="url(#skin)"
+                stroke="url(#outline)"
+                stroke-width="8"
+                opacity="0.85"
+              />
+              <path d="M150 170 Q200 120 250 170 Q200 210 150 170" fill="#101010" stroke="url(#outline)" stroke-width="6" />
+              <circle cx="175" cy="180" r="10" fill="#fefefe" />
+              <circle cx="225" cy="180" r="10" fill="#fefefe" />
+              <path d="M185 220 Q200 240 215 220" fill="#ffe500" stroke="#101010" stroke-width="4" stroke-linecap="round" />
+              <rect x="260" y="160" width="20" height="90" rx="8" fill="#101010" stroke="url(#outline)" stroke-width="6" />
+              <circle cx="270" cy="145" r="18" fill="#ffe500" stroke="#101010" stroke-width="4" />
+            </svg>
+          </figure>
 
-      <section aria-labelledby="letras">
-        <h2 id="letras">Capsulas de Letras</h2>
-        <div class="grid">
-          <div class="lyric-card">
-            Flash nocturno: la city pasa a cámara lenta cuando el beat pega fuerte y las luces neón arden.
-          </div>
-          <div class="lyric-card">
-            Combo imparable: Paco trae la papota, Ca7ri mete la nota y la pista completa levita.
-          </div>
-          <div class="lyric-card">
-            Silueta holograma: neón pegado a la piel, sudando en HD mientras la noche pierde el equilibrio.
-          </div>
-        </div>
-      </section>
-
-      <section aria-labelledby="estilo">
-        <h2 id="estilo">Estilo Papota</h2>
-        <div class="grid grid-three">
-          <article class="capsule">
-            <h3>Looks</h3>
+          <div class="hero-meta">
+            <span class="hero-eyebrow">EP · Marzo 2025</span>
+            <h1 id="hero-title">PAPOTA</h1>
             <p>
-              Camperas metalizadas, anteojos wrap-around y joggers satinados. La estética mezcla cyberpunk
-              porteño con guiños club kid.
+              CA7RIEL &amp; Paco Amoroso esculpen músculo sónico y carcajadas irónicas en un EP que abraza la sátira
+              bodybuilding. Todo vibra con riffs en esteroides, coros burlones y un pulso que pide flexear frente al espejo.
             </p>
+            <div class="actions" role="group" aria-label="Enlaces de escucha">
+              <a class="btn" href="https://open.spotify.com/album/" target="_blank" rel="noreferrer noopener">Escuchar</a>
+              <a class="btn secondary" href="https://music.apple.com/album/" target="_blank" rel="noreferrer noopener">
+                Apple Music
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="about" id="sobre" aria-labelledby="sobre-title">
+        <h2 id="sobre-title">Sobre el EP</h2>
+        <p>
+          “PAPOTA” llega como un manual de gimnasio para el humor absurdo: beats que levantan más peso que un press de banca y
+          letras que hacen guiños a los fisicoculturistas del barrio. CA7RIEL &amp; Paco Amoroso se disfrazan de coach motivacional
+          delirante, te gritan chistes proteicos al oído y montan escenas dignas de una caricatura inflada. Cada track combina
+          sintes trap, metales jazz y bajos anabólicos para recordarte que el sudor puede oler a neón. Es un himno a la exageración
+          pop con brillo cian y magenta.
+        </p>
+      </section>
+
+      <section id="tracks" aria-labelledby="tracks-title">
+        <h2 id="tracks-title">Tracklist</h2>
+        <div class="tracklist">
+          <article class="track-card">
+            <div class="track-number">01</div>
+            <div class="track-info">
+              <div class="track-title">En El After</div>
+              <div class="track-desc">Trap nocturno con guiños funk y un estribillo que presume bíceps.</div>
+              <div class="chips" aria-hidden="true">
+                <span class="chip">trap</span>
+                <span class="chip">jazz</span>
+              </div>
+            </div>
+            <div class="duration" aria-label="Duración 3 minutos 12 segundos">3:12</div>
+            <button class="play-btn" type="button" aria-label="Reproducir En El After">
+              <span>▶</span>
+            </button>
           </article>
-          <article class="capsule">
-            <h3>Accesorios</h3>
-            <ul>
-              <li>Cadena plateada de eslabones gruesos</li>
-              <li>Walkman cromado con stickers glitch</li>
-              <li>Botines de charol con plataforma</li>
-            </ul>
+
+          <article class="track-card">
+            <div class="track-number">02</div>
+            <div class="track-info">
+              <div class="track-title">Paga Dios</div>
+              <div class="track-desc">Sátira financiera con bajos inflados y coros de culto proteico.</div>
+              <div class="chips" aria-hidden="true">
+                <span class="chip">trap</span>
+                <span class="chip">electrónica</span>
+              </div>
+            </div>
+            <div class="duration" aria-label="Duración 2 minutos 58 segundos">2:58</div>
+            <button class="play-btn" type="button" aria-label="Reproducir Paga Dios">
+              <span>▶</span>
+            </button>
           </article>
-          <article class="capsule">
-            <h3>Paleta</h3>
-            <p>
-              Neón magenta, destellos lima y sombras morado profundo: el contraste que enciende la pista y
-              dibuja siluetas bajo luces ultravioletas.
-            </p>
+
+          <article class="track-card">
+            <div class="track-number">03</div>
+            <div class="track-info">
+              <div class="track-title">Toa la Vida</div>
+              <div class="track-desc">R&B flex con guitarras brillantes y poses exageradas en cámara lenta.</div>
+              <div class="chips" aria-hidden="true">
+                <span class="chip">r&amp;b</span>
+                <span class="chip">trap</span>
+              </div>
+            </div>
+            <div class="duration" aria-label="Duración 3 minutos 40 segundos">3:40</div>
+            <button class="play-btn" type="button" aria-label="Reproducir Toa la Vida">
+              <span>▶</span>
+            </button>
+          </article>
+
+          <article class="track-card">
+            <div class="track-number">04</div>
+            <div class="track-info">
+              <div class="track-title">A Mi No</div>
+              <div class="track-desc">Breakbeat irónico con voces distorsionadas que hacen curling con el beat.</div>
+              <div class="chips" aria-hidden="true">
+                <span class="chip">electrónica</span>
+                <span class="chip">trap</span>
+              </div>
+            </div>
+            <div class="duration" aria-label="Duración 2 minutos 51 segundos">2:51</div>
+            <button class="play-btn" type="button" aria-label="Reproducir A Mi No">
+              <span>▶</span>
+            </button>
+          </article>
+
+          <article class="track-card">
+            <div class="track-number">05</div>
+            <div class="track-info">
+              <div class="track-title">Nena Duele</div>
+              <div class="track-desc">Balada hiperreal con cuerdas hinchadas y clima de ring sentimental.</div>
+              <div class="chips" aria-hidden="true">
+                <span class="chip">jazz</span>
+                <span class="chip">trap</span>
+              </div>
+            </div>
+            <div class="duration" aria-label="Duración 4 minutos 05 segundos">4:05</div>
+            <button class="play-btn" type="button" aria-label="Reproducir Nena Duele">
+              <span>▶</span>
+            </button>
+          </article>
+
+          <article class="track-card">
+            <div class="track-number">06</div>
+            <div class="track-info">
+              <div class="track-title">Ola Mina XD</div>
+              <div class="track-desc">Himno de pasarela con golpes de bombo hipertrofiados y risa sardónica.</div>
+              <div class="chips" aria-hidden="true">
+                <span class="chip">electrónica</span>
+                <span class="chip">trap</span>
+              </div>
+            </div>
+            <div class="duration" aria-label="Duración 2 minutos 47 segundos">2:47</div>
+            <button class="play-btn" type="button" aria-label="Reproducir Ola Mina XD">
+              <span>▶</span>
+            </button>
+          </article>
+
+          <article class="track-card">
+            <div class="track-number">07</div>
+            <div class="track-info">
+              <div class="track-title">Mi Sombra</div>
+              <div class="track-desc">Synthwave a pura proteína que baila con luces de neón y sombras dobladas.</div>
+              <div class="chips" aria-hidden="true">
+                <span class="chip">electrónica</span>
+                <span class="chip">jazz</span>
+              </div>
+            </div>
+            <div class="duration" aria-label="Duración 3 minutos 18 segundos">3:18</div>
+            <button class="play-btn" type="button" aria-label="Reproducir Mi Sombra">
+              <span>▶</span>
+            </button>
+          </article>
+
+          <article class="track-card">
+            <div class="track-number">08</div>
+            <div class="track-info">
+              <div class="track-title">Afromami</div>
+              <div class="track-desc">Groove playero con bronces gigantes y humor absurdo de entrenamiento.</div>
+              <div class="chips" aria-hidden="true">
+                <span class="chip">jazz</span>
+                <span class="chip">electrónica</span>
+              </div>
+            </div>
+            <div class="duration" aria-label="Duración 3 minutos 26 segundos">3:26</div>
+            <button class="play-btn" type="button" aria-label="Reproducir Afromami">
+              <span>▶</span>
+            </button>
+          </article>
+
+          <article class="track-card">
+            <div class="track-number">09</div>
+            <div class="track-info">
+              <div class="track-title">La Ropa</div>
+              <div class="track-desc">Clausura de cardio con beats industriales y guiños de caricatura inflada.</div>
+              <div class="chips" aria-hidden="true">
+                <span class="chip">trap</span>
+                <span class="chip">electrónica</span>
+              </div>
+            </div>
+            <div class="duration" aria-label="Duración 4 minutos 11 segundos">4:11</div>
+            <button class="play-btn" type="button" aria-label="Reproducir La Ropa">
+              <span>▶</span>
+            </button>
           </article>
         </div>
       </section>
 
-      <section aria-labelledby="noche">
-        <h2 id="noche">Ruta Nocturna</h2>
+      <section id="galeria" aria-labelledby="galeria-title">
+        <h2 id="galeria-title">Galería Inflada</h2>
+        <div class="gallery">
+          <figure class="art-card" role="img" aria-label="Arte homenaje Papota con brazos inflados">
+            <span>PUMP</span>
+          </figure>
+          <figure class="art-card" role="img" aria-label="Arte caricaturesco con bíceps fluorescentes">
+            <span>FLEX</span>
+          </figure>
+          <figure class="art-card" role="img" aria-label="Arte satírico con micrófono gigante">
+            <span>ROAR</span>
+          </figure>
+          <figure class="art-card" role="img" aria-label="Arte experimental con aura cian y magenta">
+            <span>GLOW</span>
+          </figure>
+        </div>
+      </section>
+
+      <section id="film" class="short-film" aria-labelledby="film-title">
+        <h2 id="film-title">Short Film</h2>
+        <div class="video-frame" aria-label="Placeholder del cortometraje de Papota">
+          <div class="video-placeholder">CORTO DIRIGIDO POR MARTÍN PIROYANSKY</div>
+        </div>
+        <p>
+          El lanzamiento llega acompañado de un cortometraje dirigido por Martín Piroyansky que satiriza los infomerciales de
+          culturismo: coreografías exageradas, cámaras lentas goteando aceite neón y cameos de la crew levantando sintetizadores
+          como pesas rusas. La pieza mezcla humor físico con la energía eléctrica del EP para convertir cada escena en una
+          viñeta animada.
+        </p>
+      </section>
+
+      <section aria-labelledby="testimonials-title">
+        <h2 id="testimonials-title">Barra Testimonial</h2>
+        <div class="testimonials" role="region" aria-label="Frases satíricas">
+          <div class="testimonial-track" aria-hidden="true">
+            <span class="testimonial">“Más reps, más risas.”</span>
+            <span class="testimonial">“Proteína sabor neón.”</span>
+            <span class="testimonial">“Flexear es un acto de fe.”</span>
+            <span class="testimonial">“Humor hipertrofiado garantizado.”</span>
+            <span class="testimonial">“Más reps, más risas.”</span>
+            <span class="testimonial">“Proteína sabor neón.”</span>
+            <span class="testimonial">“Flexear es un acto de fe.”</span>
+            <span class="testimonial">“Humor hipertrofiado garantizado.”</span>
+          </div>
+          <span class="sr-only">Más reps, más risas. Proteína sabor neón. Flexear es un acto de fe. Humor hipertrofiado garantizado.</span>
+        </div>
+      </section>
+
+      <section id="fechas" aria-labelledby="fechas-title">
+        <h2 id="fechas-title">Fechas Clave</h2>
         <div class="timeline">
-          <div class="timeline-step">
-            <h3>Previa en terraza</h3>
-            <p>
-              Sintetizadores marcando el tempo mientras se mezcla fernet con jugo, la crew ensaya coros
-              callejeros mirando el río.
-            </p>
+          <div class="milestone">
+            <strong>Marzo 2025</strong>
+            <p>Lanzamiento oficial de “PAPOTA” en plataformas digitales y short film de estreno simultáneo.</p>
           </div>
-          <div class="timeline-step">
-            <h3>Club Subsuelo</h3>
-            <p>
-              Bajos dub se funden con ritmos caribeños. Ca7ri suelta riffs afilados y Paco dispara punchlines
-              que prenden la pista.
-            </p>
+          <div class="milestone">
+            <strong>Club de Estreno</strong>
+            <p>Fiesta clandestina con circuito de flexiones, DJ set híbrido y merchandising inflable edición limitada.</p>
           </div>
-          <div class="timeline-step">
-            <h3>After holograma</h3>
-            <p>
-              Brillos de neón filtrados por vapor, breakdance improvisado y auriculares compartidos para
-              repasar los versos de "Papota".
-            </p>
+          <div class="milestone">
+            <strong>Gira Proteica</strong>
+            <p>Tour de showcases intensivos con estaciones de entrenamiento musical y visuales cartoon.</p>
           </div>
-        </div>
-      </section>
-
-      <section aria-labelledby="bonus">
-        <h2 id="bonus">Bonus Track</h2>
-        <div class="grid grid-three">
-          <article class="capsule">
-            <h3>Sample Vision</h3>
-            <p>
-              Ritmos digitales con esencia afro-latin y breaks hip hop. El beat salta de sintetizadores a
-              guitarras con un filtro saturado.
-            </p>
-          </article>
-          <article class="capsule">
-            <h3>Coreografía</h3>
-            <p>
-              Pasos ondulantes, manos en slow motion y giros que acompañan el drop. Vibra de videoclip en
-              VHS con glitch.
-            </p>
-          </article>
-          <article class="capsule">
-            <h3>Keep Listening</h3>
-            <p>
-              Sintonizá el universo de Ca7riel &amp; Paco Amoroso con una mezcla de trap criollo, funk futurista y
-              electrónica sudorosa.
-            </p>
-          </article>
         </div>
       </section>
     </main>
 
-    <footer>
-      Inspirado íntegramente en "Papota" de Ca7riel &amp; Paco Amoroso. Escuchalo en tu plataforma favorita y mantené el pulso vivo.
+    <footer class="wrap" aria-labelledby="footer-title">
+      <div class="footer-grid">
+        <div>
+          <h2 id="footer-title">Sello y Streaming</h2>
+          <div class="footer-links" role="group" aria-label="Plataformas de streaming">
+            <a href="https://open.spotify.com/album/" target="_blank" rel="noreferrer noopener">Spotify</a>
+            <a href="https://music.apple.com/album/" target="_blank" rel="noreferrer noopener">Apple Music</a>
+            <a href="https://www.youtube.com/" target="_blank" rel="noreferrer noopener">YouTube</a>
+          </div>
+        </div>
+        <div class="credits">
+          <p>“PAPOTA” de CA7RIEL &amp; Paco Amoroso · Marzo 2025 · Sello 5020 Records.</p>
+          <p>Arte conceptual inflado por la ilustradora ficticia <strong>Roxy Pump</strong>.</p>
+        </div>
+      </div>
     </footer>
+
+    <script>
+      const navLinks = document.querySelectorAll('.nav-links a');
+      navLinks.forEach((link) => {
+        link.addEventListener('focus', () => link.classList.add('is-focus'));
+        link.addEventListener('blur', () => link.classList.remove('is-focus'));
+      });
+
+      const testimonials = document.querySelector('.testimonial-track');
+      if (testimonials) {
+        testimonials.addEventListener('mouseenter', () => {
+          testimonials.style.animationPlayState = 'paused';
+        });
+        testimonials.addEventListener('mouseleave', () => {
+          testimonials.style.animationPlayState = 'running';
+        });
+      }
+    </script>
   </body>
 </html>
