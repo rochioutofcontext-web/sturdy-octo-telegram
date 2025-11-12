@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pink Pop Princess Fashion Blog</title>
+  <style>
+    :root {
+      --hot-pink: #ff4fbe;
+      --bubblegum: #ff8ad4;
+      --baby-pink: #ffd7f1;
+      --deep-purple: #7f3fbf;
+      --lilac: #cdb5ff;
+      --cheetah-spot: rgba(88, 33, 64, 0.65);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Comic Sans MS", "Papyrus", "Verdana", sans-serif;
+      background: radial-gradient(circle at top left, var(--baby-pink), var(--bubblegum) 40%, #ff9ee2 60%, #ffccf5);
+      color: #4e1f58;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.9;
+      background-image: radial-gradient(circle, rgba(255, 255, 255, 0.7) 10%, transparent 30%),
+        radial-gradient(circle, rgba(255, 191, 255, 0.6) 5%, transparent 20%),
+        radial-gradient(circle, rgba(255, 255, 255, 0.5) 12%, transparent 28%);
+      background-size: 180px 180px, 140px 140px, 220px 220px;
+      animation: sparkle 12s linear infinite;
+    }
+
+    body::after {
+      animation-direction: reverse;
+      mix-blend-mode: screen;
+    }
+
+    @keyframes sparkle {
+      0% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(10px, -20px, 0) scale(1.05); }
+      100% { transform: translate3d(-10px, 15px, 0) scale(1); }
+    }
+
+    header {
+      text-align: center;
+      padding: 4rem 1.5rem 3rem;
+      position: relative;
+    }
+
+    header h1 {
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      color: white;
+      text-shadow: 0 0 12px rgba(255, 255, 255, 0.8), 0 0 24px var(--deep-purple), 0 0 48px #ff48c4;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    header p {
+      max-width: 700px;
+      margin: 1.5rem auto 0;
+      font-size: 1.1rem;
+      background: rgba(255, 255, 255, 0.3);
+      padding: 1.25rem 1.75rem;
+      border-radius: 1.75rem;
+      border: 3px solid rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(4px);
+      box-shadow: 0 15px 45px rgba(127, 63, 191, 0.3);
+    }
+
+    .glitter-divider {
+      margin: 3rem auto 4rem;
+      width: min(90%, 900px);
+      height: 4px;
+      background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.9), rgba(255, 72, 196, 0.9), rgba(255, 255, 255, 0.9));
+      box-shadow: 0 0 20px rgba(255, 72, 196, 0.7), 0 0 40px rgba(255, 255, 255, 0.8);
+      position: relative;
+    }
+
+    .glitter-divider::after {
+      content: "";
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 24px;
+      background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="120" height="40" viewBox="0 0 120 40"%3E%3Cpath fill="%23FFFFFF" fill-opacity="0.9" d="M20 20c8-12 20-12 28 0 8-12 20-12 28 0 8-12 20-12 28 0 8-12 20-12 28 0"/%3E%3C/svg%3E') no-repeat center/contain;
+      animation: shimmer 2.2s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0%, 100% { opacity: 0.4; transform: translateX(-50%) scale(0.9); }
+      50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+    }
+
+    main {
+      width: min(1080px, 92%);
+      margin: 0 auto 6rem;
+      display: grid;
+      gap: 2.5rem;
+    }
+
+    section {
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 22px;
+      padding: 2rem;
+      border: 4px double rgba(255, 182, 233, 0.9);
+      box-shadow: 0 20px 50px rgba(255, 72, 196, 0.18);
+      position: relative;
+      overflow: hidden;
+    }
+
+    section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"%3E%3Cdefs%3E%3Cpattern id="cheetah" width="80" height="80" patternUnits="userSpaceOnUse" patternTransform="rotate(12) scale(0.9)"%3E%3Cellipse cx="20" cy="20" rx="16" ry="12" fill="%23C96C9B"/%3E%3Cellipse cx="60" cy="32" rx="18" ry="14" fill="%23B04D80"/%3E%3Cellipse cx="34" cy="56" rx="12" ry="10" fill="%23E29DC0"/%3E%3Cellipse cx="12" cy="48" rx="10" ry="8" fill="%239C2F63"/%3E%3Cellipse cx="64" cy="10" rx="10" ry="8" fill="%23f49bc6"/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill="url(%23cheetah)" width="100%25" height="100%25" opacity="0.08"/%3E%3C/svg%3E');
+      opacity: 0.7;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      color: var(--deep-purple);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+
+    section p {
+      line-height: 1.6;
+      font-size: 1.08rem;
+    }
+
+    .trend-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .trend-card {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 18px;
+      padding: 1.5rem;
+      border: 3px solid rgba(255, 110, 210, 0.8);
+      box-shadow: 0 12px 24px rgba(255, 110, 210, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trend-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(130deg, rgba(255, 255, 255, 0.7), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .trend-card:hover::after {
+      opacity: 1;
+    }
+
+    .trend-card h3 {
+      margin-top: 0;
+      font-size: 1.4rem;
+      color: var(--hot-pink);
+    }
+
+    .mp3-feature {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .mp3-player {
+      background: radial-gradient(circle at 20% 20%, #ffe7f7, var(--bubblegum));
+      border-radius: 38px;
+      padding: 2.5rem 2rem;
+      border: 5px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 25px 45px rgba(255, 72, 196, 0.35);
+      text-align: center;
+      position: relative;
+    }
+
+    .mp3-player::before,
+    .mp3-player::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 0 18px rgba(255, 255, 255, 0.8);
+    }
+
+    .mp3-player::before {
+      width: 60px;
+      height: 60px;
+      top: 20px;
+      left: 20px;
+    }
+
+    .mp3-player::after {
+      width: 90px;
+      height: 90px;
+      bottom: 18px;
+      right: 24px;
+      animation: pulse 3.6s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(0.95); opacity: 0.7; }
+      50% { transform: scale(1.08); opacity: 1; }
+    }
+
+    .mp3-player h3 {
+      font-size: 1.6rem;
+      letter-spacing: 0.08em;
+      color: white;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .playlist {
+      background: rgba(255, 255, 255, 0.85);
+      padding: 1.75rem;
+      border-radius: 22px;
+      border: 3px dashed rgba(255, 110, 210, 0.8);
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .playlist li {
+      list-style: none;
+      padding: 0.8rem 1.1rem;
+      border-radius: 16px;
+      background: rgba(255, 143, 212, 0.3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      letter-spacing: 0.04em;
+      color: #7f3fbf;
+      box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.4);
+    }
+
+    .playlist li span {
+      font-size: 0.95rem;
+      font-weight: normal;
+      letter-spacing: normal;
+    }
+
+    .styleboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .style-card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      padding: 1.75rem;
+      text-align: center;
+      border: 4px dotted rgba(255, 110, 210, 0.7);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .style-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(255, 255, 255, 0.9), transparent 65%);
+      mix-blend-mode: soft-light;
+      opacity: 0.7;
+    }
+
+    .style-card h3 {
+      margin-top: 0;
+      color: #d93492;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .style-card p {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .glam-footer {
+      text-align: center;
+      padding: 3rem 1.5rem 4rem;
+      color: white;
+    }
+
+    .glam-footer p {
+      display: inline-block;
+      padding: 0.9rem 1.4rem;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(255, 95, 190, 0.85), rgba(145, 70, 190, 0.95));
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 12px 32px rgba(127, 63, 191, 0.5);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 600px) {
+      header p {
+        font-size: 1rem;
+      }
+
+      section {
+        padding: 1.5rem;
+      }
+
+      .playlist li {
+        flex-direction: column;
+        gap: 0.35rem;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Pink Pop Princess</h1>
+    <p>Welcome to your VIP pass for early 2000s glam! We're talking glitter gloss, cheetah print everything, and the sparkle-powered wardrobes of our favorite Disney Channel queens. Grab your flip phone, press play on your fave MP3 mix, and let’s dive into the dreamiest fashion diary of the decade.</p>
+  </header>
+
+  <div class="glitter-divider"></div>
+
+  <main>
+    <section>
+      <h2>Trend Forecast</h2>
+      <p>The 00s are all about layering tank tops, chunky belts, and those shiny metallic bags that look straight out of a music video premiere. Mix in a splash of bubblegum pink, sprinkle on body glitter, and don’t forget the butterfly clips! These vibes are forever iconic.</p>
+      <div class="trend-grid">
+        <div class="trend-card">
+          <h3>Glitter Gloss Glow</h3>
+          <p>High-shine lip gloss and shimmering body glitter keep every hallway strut red-carpet ready.</p>
+        </div>
+        <div class="trend-card">
+          <h3>Layer Queen</h3>
+          <p>Baby tees over lace camis and shrug sweaters are the secret to that pop princess polish.</p>
+        </div>
+        <div class="trend-card">
+          <h3>Charm Bracelet Story</h3>
+          <p>Stack the charms! Tiny hearts, flip phones, and little tiaras clink with every move.</p>
+        </div>
+        <div class="trend-card">
+          <h3>Pink Platform Parade</h3>
+          <p>From jelly wedges to platform sneakers, height equals glam. Bonus points for glitter soles.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Cheetah Print Craze</h2>
+      <p>Ch-channeling our inner Cheetah Girls means rocking prints loud and proud! Pair a cheetah miniskirt with a satin bomber, or wrap a print scarf over your boombox for instant drama. It’s all about embracing that wild heart.</p>
+      <div class="styleboard">
+        <div class="style-card">
+          <h3>Raven's Runway</h3>
+          <p>Mix vibrant patterns with bold accessories. Think neon bangles, color-pop boots, and fearless layering.</p>
+        </div>
+        <div class="style-card">
+          <h3>Studio Rehearsal</h3>
+          <p>Sweatpants with rhinestone slogans, velour zip-ups, and oversized hoop earrings that catch every stage light.</p>
+        </div>
+        <div class="style-card">
+          <h3>NYC Dream Night</h3>
+          <p>A cheetah swing coat over a sparkly mini dress is your ticket to the center of the spotlight.</p>
+        </div>
+        <div class="style-card">
+          <h3>Backstage Besties</h3>
+          <p>Coordinate with your crew: matching print headbands, glitter sneakers, and charm-covered backpacks.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>MP3 Mix of the Moment</h2>
+      <div class="mp3-feature">
+        <div class="mp3-player">
+          <h3>Princess Playlist</h3>
+          <p>Slide open your hot pink MP3 player and get ready to press repeat. These tracks keep every shopping trip and late-night phone call perfectly scored.</p>
+        </div>
+        <ul class="playlist">
+          <li>"Strut" <span>Cheetah Girls 2</span></li>
+          <li>"Supergirl" <span>Hannah Montana</span></li>
+          <li>"Fabulous" <span>High School Musical 2</span></li>
+          <li>"Rush" <span>Aly & AJ</span></li>
+          <li>"Wake Up" <span>Hilary Duff</span></li>
+          <li>"Chemicals React" <span>Aly & AJ</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Diary Doodles</h2>
+      <p>Dear glitter journal, today’s inspiration comes straight from a Disney Channel sleepover marathon. We paired polka-dot leg warmers with metallic mini skirts, clipped in bedazzled barrettes, and celebrated with a fashion show down the hallway. Tomorrow’s mood? Rhinestone everything.</p>
+    </section>
+  </main>
+
+  <footer class="glam-footer">
+    <p>Stay Sparkly &middot; Stay Fearless &middot; Stay Pink</p>
+  </footer>
+</body>
+</html>
